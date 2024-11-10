@@ -13,3 +13,4 @@ matplotlib：生成图表，如折线图
 Flask-WTF：简化表单处理（如果应用中需要使用表单）
 gunicorn：生产环境的 WSGI 服务器，用于运行 Flask 应用
 需要mongodb数据库
+flask run 启动
