@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>BMI和体脂率计算器</h2>
+<form method="post">
+    <label for="height">身高(cm)：</label>
+    <input type="number" name="height" required>
+
+    <label for="weight">体重(kg)：</label>
+    <input type="number" name="weight" required>
+
+    <label for="age">年龄：</label>
+    <input type="number" name="age" required>
+
+    <label for="gender">性别：</label>
+    <select name="gender" required>
+        <option value="male">男性</option>
+        <option value="female">女性</option>
+    </select>
+
+    <button type="submit">计算</button>
+</form>
+
+{% if bmi and body_fat %}
+    <hr>
+        <h3>计算结果</h3>
+        <p>BMI: {{ bmi }}</p>
+        <p>体脂率: {{ body_fat }}%</p>
+        <p>BMI状态: {{ bmi_status }}</p>
+{% endif %}
+
+<a href="{{ url_for('history') }}">查看历史记录</a>
+
+<!-- 登出按钮 -->
+<form method="post" action="{{ url_for('logout') }}">
+    <button type="submit">登出</button>
+</form>
+
+{% endblock %}
+
+
+

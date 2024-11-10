@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>登录以继续使用</h2>
+
+<form method="post">
+    <label for="username">用户名：</label>
+    <input type="text" name="username" required>
+
+    <label for="password">密码：</label>
+    <input type="password" name="password" required>
+
+    <button type="submit">登录</button>
+</form>
+<a href="{{ url_for('register') }}">还没有账户？注册</a>
+<a href="{{ url_for('admin_login') }}">管理员登录</a>
+{% endblock %}
+

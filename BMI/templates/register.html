@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>注册新用户</h2>
+<form method="post">
+    <label for="username">用户名：</label>
+    <input type="text" name="username" required>
+
+    <label for="password">密码：</label>
+    <input type="password" name="password" required>
+
+    <label for="admin_key">管理员密钥：</label>
+    <input type="text" name="admin_key">
+
+    <button type="submit">注册</button>
+</form>
+<a href="{{ url_for('login') }}">已有账号？登录</a>
+{% endblock %}
+

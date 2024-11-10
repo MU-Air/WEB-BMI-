@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>管理页面</h2>
+<p>CPU 负载：{{ cpu_load }}%</p>
+<p>内存使用：{{ memory_info.percent }}%</p>
+
+<h3>用户管理</h3>
+<table>
+    <tr>
+        <th>用户名</th>
+        <th>是否管理员</th>
+    </tr>
+    {% for user in users %}
+    <tr>
+        <td>{{ user.username }}</td>
+        <td>{{ '是' if user.is_admin else '否' }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h3>添加新用户</h3>
+<form method="post">
+    <label for="new_username">用户名：</label>
+    <input type="text" name="new_username" required>
+
+    <label for="new_password">密码：</label>
+    <input type="password" name="new_password" required>
+
+    <label>
+        <input type="checkbox" name="new_is_admin"> 设置为管理员
+    </label>
+
+    <button type="submit" name="add_user">添加用户</button>
+</form>
+
+<h3>删除用户</h3>
+<form method="post">
+    <label for="delete_username">用户名：</label>
+    <input type="text" name="delete_username" required>
+    <button type="submit" name="delete_user">删除用户</button>
+</form>
+
+<h3>修改用户密码</h3>
+<form method="post">
+    <label for="change_username">用户名：</label>
+    <input type="text" name="change_username" required>
+
+    <label for="new_password">新密码：</label>
+    <input type="password" name="new_password" required>
+
+    <button type="submit" name="change_password">修改密码</button>
+</form>
+{% endblock %}
+
+

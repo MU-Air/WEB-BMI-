@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>{{ session['username'] }} 的历史记录</h2>
+
+<!-- 折线图展示 -->
+<img src="data:image/png;base64,{{ plot_url }}" alt="BMI 趋势图" />
+
+<!-- 历史数据表格 -->
+<table>
+    <thead>
+        <tr>
+            <th>日期</th>
+            <th>体重 (kg)</th>
+            <th>身高 (cm)</th>
+            <th>BMI</th>
+            <th>体脂率</th>
+            <th>状态</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for entry in history %}
+        <tr>
+            <td>{{ entry.date.strftime('%Y-%m-%d %H:%M') }}</td>
+            <td>{{ entry.weight }}</td>
+            <td>{{ entry.height }}</td>
+            <td>{{ entry.bmi }}</td>
+            <td>{{ entry.body_fat }}</td>
+            <td>{{ entry.bmi_status }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- 清空历史按钮 -->
+<form method="post" action="{{ url_for('clear_history') }}">
+    <button type="submit">清空历史记录</button>
+</form>
+
+<a href="{{ url_for('calculate') }}">返回计算页面</a>
+{% endblock %}
+
